@@ -100,7 +100,16 @@ public class SinglyLinkedList<T> {
 
     // Elimina aquellos nodos de la lista que esten duplicados
     public void deleteDuplicates() {
-
+             Node<T> N = first;
+	         Node<T> aux = N;
+	         for (;N!=null ; N = N.getNext()) {
+	        	 for(aux = N.getNext();aux != null; aux = aux.getNext()) {
+	        		 if(N.getValue().compareTo(aux.getValue()) == 0){
+	                     N.setNext(aux.getNext());
+	                     size--;
+	                 }
+	        	 }
+	         }
     }
 
     // Inserta un nuevo nodo en una posicion especifica de la lista
