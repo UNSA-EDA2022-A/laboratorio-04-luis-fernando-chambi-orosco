@@ -123,14 +123,12 @@ public class SinglyLinkedList<T extends Comparable<T>> {
             for (int i = 1; i < position; i++) {
                 t = t.getNext();
             }
-        
             t2 = t.getNext();
             t.setNext(newNode);
             newNode.setNext(t2);
         } else {
             System.out.println("fuera de rango");
         }
-
         size++;
     }
 
