@@ -1,6 +1,6 @@
 package com.example.project;
 
-public class SinglyLinkedList<T> {
+public class SinglyLinkedList<T extends Comparable<T>> {
     private Node<T> first; // Primero nodo de la lista
     private int size; // Tamano de la lista
 
@@ -123,7 +123,7 @@ public class SinglyLinkedList<T> {
             for (int i = 1; i < position; i++) {
                 t = t.getNext();
             }
-            // almacena los valores siguientes de la lista despues de la posicion
+        
             t2 = t.getNext();
             t.setNext(newNode);
             newNode.setNext(t2);
