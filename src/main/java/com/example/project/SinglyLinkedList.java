@@ -1,6 +1,6 @@
 package com.example.project;
 
-public class SinglyLinkedList<T> {
+public class SinglyLinkedList<T extends Comparable<T>> {
     private Node<T> first; // Primero nodo de la lista
     private int size; // Tamano de la lista
 
@@ -100,17 +100,65 @@ public class SinglyLinkedList<T> {
 
     // Elimina aquellos nodos de la lista que esten duplicados
     public void deleteDuplicates() {
-
+             Node<T> N = first;
+	         Node<T> aux = N;
+	         for (;N!=null ; N = N.getNext()) {
+	        	 for(aux = N.getNext();aux != null; aux = aux.getNext()) {
+	        		 if(N.getValue().compareTo(aux.getValue()) == 0){
+	                     N.setNext(aux.getNext());
+	                     size--;
+	                 }
+	        	 }
+	         }
     }
 
     // Inserta un nuevo nodo en una posicion especifica de la lista
     public void insertNth(T data, int position) {
+       Node<T> newNode = new Node<T>(data, null);
+	        Node<T> t = first;
+	        Node<T> t2 = first;
+	            if (position == 0) {
+	                addFirst(data);
+	            } else if (position == size){
+	            	addLast(data);
+	            }else if(position <size) {
+	            	
+	            	 for (int i = 1; i < position; i++) {
+	            		 
+		                    t = t.getNext();
+		                }
+		                t2 = t.getNext();
+		                t.setNext(newNode);
+		                newNode.setNext(t2);
 
+	            }else {
+	            	System.out.println("fuera de rango");
+	            }
+	           
+	        size++;
     }
 
     // Elimina el nodo de una posicion especifica de la lista
     public void deleteNth(int position) {
+        Node<T> t;
+        if (position == 0) {
+            removeFirst();
 
+        } else if (position == size - 1) {
+            removeLast();
+        } else if (position < size) {
+            System.out.println(size);
+            for (int i = 1; i < size - 2; i++) {
+                t = first.getNext();
+                System.out.println(t.toString());
+                if (position == i) {
+                    first.setNext(t.getNext());
+                }
+                size--;
+            }
+        } else {
+            System.out.println("fuera de rango");
+        }
     }
 
     public static void main(final String[] args) {
